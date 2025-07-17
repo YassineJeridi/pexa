@@ -1,0 +1,449 @@
+/* components/TrustedBy.module.css */
+.trustedBy {
+    min-height: 100vh;
+    background: #0A0A0A;
+    padding: 160px 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dynamic background gradient */
+.backgroundGradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 75% 25%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 25% 75%, rgba(34, 197, 94, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.08) 0%, transparent 40%);
+    animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    50% {
+        transform: scale(1.1) rotate(1deg);
+    }
+}
+
+/* Cursor follower */
+.cursorFollower {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out;
+    z-index: 1;
+}
+
+.container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.titleWrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 4rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin: 0;
+    letter-spacing: -0.03em;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.titleGlow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #6366F1, #8B5CF6);
+    filter: blur(20px);
+    opacity: 0.3;
+    z-index: 1;
+    animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(1.02);
+    }
+}
+
+.subtitle {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.25rem;
+    color: #94A3B8;
+    font-weight: 400;
+    margin: 0;
+    letter-spacing: 0.01em;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Logo Grid */
+.logoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin-bottom: 100px;
+}
+
+/* Logo Card */
+.logoCard {
+    position: relative;
+    aspect-ratio: 1.2;
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+    animation: cardReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    animation-delay: var(--delay);
+}
+
+.trustedBy.visible .logoCard {
+    animation-play-state: running;
+}
+
+@keyframes cardReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.cardInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    backdrop-filter: blur(10px);
+}
+
+.logoCard:hover .cardInner {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-8px);
+    box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(99, 102, 241, 0.1);
+}
+
+/* Logo Container */
+.logoContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    transition: transform 0.3s ease;
+}
+
+.logoCard:hover .logoContainer {
+    transform: scale(1.05);
+}
+
+/* Logo Image */
+.logoImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.logoCard:hover .logoImage {
+    filter:
+        grayscale(0%) brightness(1.1) contrast(1) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5));
+}
+
+/* Logo Overlay */
+.logoOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    padding: 24px 20px 20px;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.logoCard:hover .logoOverlay {
+    transform: translateY(0);
+}
+
+.logoInfo {
+    text-align: center;
+}
+
+.logoName {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+}
+
+.logoCategory {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #94A3B8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Card Effects */
+.cardEffects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.shimmer {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent);
+    transform: translateX(-100%) translateY(-100%);
+    transition: transform 0.6s ease;
+}
+
+.logoCard:hover .shimmer {
+    transform: translateX(100%) translateY(100%);
+}
+
+.glow {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: radial-gradient(ellipse at center,
+            rgba(99, 102, 241, 0.2) 0%,
+            transparent 70%);
+    opacity: 0;
+    filter: blur(20px);
+    transition: opacity 0.4s ease;
+}
+
+.logoCard:hover .glow {
+    opacity: 1;
+}
+
+/* Stats Section */
+.stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 30px;
+    padding: 40px 60px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.statItem {
+    text-align: center;
+}
+
+.statNumber {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #6366F1, #8B5CF6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.statLabel {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.9rem;
+    color: #94A3B8;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.statDivider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, #6366F1, transparent);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 30px;
+    }
+
+    .logoGrid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .trustedBy {
+        padding: 100px 0;
+    }
+
+    .title {
+        font-size: 3rem;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .header {
+        margin-bottom: 80px;
+    }
+
+    .logoGrid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+        margin-bottom: 80px;
+    }
+
+    .logoContainer {
+        padding: 30px;
+    }
+
+    .stats {
+        flex-direction: column;
+        gap: 40px;
+        padding: 40px 30px;
+    }
+
+    .statDivider {
+        width: 60px;
+        height: 1px;
+        background: linear-gradient(to right, transparent, #6366F1, transparent);
+    }
+}
+
+@media (max-width: 480px) {
+    .trustedBy {
+        padding: 80px 0;
+    }
+
+    .container {
+        padding: 0 20px;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .logoGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .logoContainer {
+        padding: 20px;
+    }
+
+    .stats {
+        padding: 30px 20px;
+    }
+
+    .statNumber {
+        font-size: 2rem;
+    }
+}
+
+/* Enhanced focus states for accessibility */
+.logoCard:focus-within {
+    outline: 2px solid #6366F1;
+    outline-offset: 2px;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .logoCard {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .backgroundGradient {
+        animation: none;
+    }
+
+    .titleGlow {
+        animation: none;
+    }
+}

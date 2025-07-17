@@ -1,0 +1,284 @@
+/* components/Header.module.css */
+.header {
+    min-height: 100vh;
+    background: #0A0A0A;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dynamic background gradient - matches other components */
+.backgroundGradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 75% 25%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 25% 75%, rgba(34, 197, 94, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.08) 0%, transparent 40%);
+    animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.1) rotate(1deg);
+        opacity: 1;
+    }
+}
+
+/* Cursor follower */
+.cursorFollower {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out;
+    z-index: 1;
+    filter: blur(1px);
+}
+
+.container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.heroSection {
+    text-align: center;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bannerContainer {
+    position: relative;
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+    animation: bannerReveal 1.2s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    animation-delay: 0.3s;
+}
+
+.header.visible .bannerContainer {
+    animation-play-state: running;
+}
+
+@keyframes bannerReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.portfolioBanner {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    filter: brightness(1.1) contrast(1.1);
+    animation: bannerFloat 6s ease-in-out infinite;
+}
+
+@keyframes bannerFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.bannerContainer:hover .portfolioBanner {
+    transform: translateY(-5px) scale(1.02);
+    filter: brightness(1.2) contrast(1.2);
+}
+
+/* Enhanced glow effect for PNG image */
+.bannerGlow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center,
+            rgba(99, 102, 241, 0.3) 0%,
+            rgba(168, 85, 247, 0.2) 25%,
+            rgba(34, 197, 94, 0.1) 50%,
+            transparent 70%);
+    filter: blur(30px);
+    opacity: 0.7;
+    animation: glowPulse 4s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+.bannerContainer:hover .bannerGlow {
+    opacity: 1;
+    animation-duration: 2s;
+}
+
+/* Additional animated background elements */
+.backgroundGradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 30%),
+        radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.05) 0%, transparent 30%);
+    animation: secondaryGradient 15s ease-in-out infinite reverse;
+}
+
+@keyframes secondaryGradient {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.2) rotate(-1deg);
+        opacity: 0.8;
+    }
+}
+
+.backgroundGradient::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 60% 40%, rgba(34, 197, 94, 0.03) 0%, transparent 25%),
+        radial-gradient(circle at 40% 60%, rgba(59, 130, 246, 0.03) 0%, transparent 25%);
+    animation: tertiaryGradient 25s ease-in-out infinite;
+}
+
+@keyframes tertiaryGradient {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.3;
+    }
+
+    33% {
+        transform: scale(1.1) rotate(1deg);
+        opacity: 0.6;
+    }
+
+    66% {
+        transform: scale(0.9) rotate(-1deg);
+        opacity: 0.4;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 30px;
+    }
+
+    .portfolioBanner {
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .portfolioBanner {
+        max-width: 90%;
+    }
+
+    .bannerGlow {
+        filter: blur(20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .portfolioBanner {
+        max-width: 95%;
+    }
+
+    .bannerGlow {
+        filter: blur(15px);
+    }
+}
+
+/* Enhanced focus states for accessibility */
+.portfolioBanner:focus {
+    outline: 2px solid #6366F1;
+    outline-offset: 4px;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .bannerContainer {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .backgroundGradient,
+    .backgroundGradient::before,
+    .backgroundGradient::after {
+        animation: none;
+    }
+
+    .portfolioBanner {
+        animation: none;
+    }
+
+    .bannerGlow {
+        animation: none;
+    }
+}

@@ -1,0 +1,467 @@
+/* components/Footer.module.css */
+.footer {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Background Effects */
+.backgroundEffects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.gradientOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(34, 197, 94, 0.06) 0%, transparent 50%);
+    animation: gradientShift 15s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    50% {
+        transform: scale(1.1) rotate(1deg);
+    }
+}
+
+.particleField {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.particle {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.6) 0%, transparent 70%);
+    border-radius: 50%;
+    left: var(--x);
+    top: var(--y);
+    animation: float var(--duration) var(--delay) infinite ease-in-out;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px) scale(1);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: translateY(-20px) scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 40px 30px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Footer Content */
+.footerContent {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 60px;
+}
+
+/* Brand Section */
+.brandSection {
+    max-width: 400px;
+}
+
+.logoContainer {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.logo {
+    height: 60px;
+    width: auto;
+    filter: brightness(1.1) contrast(1.1);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.logoGlow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+    filter: blur(15px);
+    opacity: 0.7;
+    animation: logoGlow 3s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+.brandDescription {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    letter-spacing: 0.01em;
+}
+
+/* Navigation Section */
+.navigationSection {
+    min-width: 150px;
+}
+
+.sectionTitle {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 25px;
+    position: relative;
+    letter-spacing: -0.01em;
+}
+
+.sectionTitle::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #6366F1, #8B5CF6);
+    border-radius: 1px;
+}
+
+.navList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.navLink {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.navLink:hover {
+    color: #FFFFFF;
+    transform: translateX(5px);
+}
+
+.navLink::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #6366F1, #8B5CF6);
+    transition: width 0.3s ease;
+}
+
+.navLink:hover::before {
+    width: 6px;
+}
+
+/* Social Media Section */
+.socialSection {
+    min-width: 150px;
+}
+
+.socialLinks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 200px;
+}
+
+.socialLink {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.socialLink:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(99, 102, 241, 0.2);
+}
+
+.socialIcon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+    filter: brightness(0.8) contrast(1.2);
+    position: relative;
+    z-index: 2;
+}
+
+.socialLink:hover .socialIcon {
+    filter: brightness(1.2) contrast(1);
+    transform: scale(1.1);
+}
+
+.socialIconGlow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    filter: blur(10px);
+    transition: opacity 0.3s ease;
+}
+
+.socialLink:hover .socialIconGlow {
+    opacity: 1;
+}
+
+/* Footer Bottom */
+.footerBottom {
+    padding-top: 40px;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.8), transparent);
+    animation: dividerShimmer 4s ease-in-out infinite;
+}
+
+@keyframes dividerShimmer {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+.bottomContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.copyright {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    letter-spacing: 0.01em;
+}
+
+.bottomLinks {
+    display: flex;
+    gap: 30px;
+}
+
+.bottomLink {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.bottomLink:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.bottomLink::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, #6366F1, #8B5CF6);
+    transition: width 0.3s ease;
+}
+
+.bottomLink:hover::after {
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .container {
+        padding: 60px 30px 20px;
+    }
+
+    .footerContent {
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+    }
+
+    .socialSection {
+        grid-column: span 2;
+        margin-top: 20px;
+    }
+
+    .socialLinks {
+        max-width: 100%;
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 50px 20px 20px;
+    }
+
+    .footerContent {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .socialSection {
+        grid-column: span 1;
+        margin-top: 0;
+    }
+
+    .socialLinks {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 200px;
+    }
+
+    .bottomContent {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .bottomLinks {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 40px 15px 15px;
+    }
+
+    .logo {
+        height: 50px;
+    }
+
+    .socialLinks {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .socialLink {
+        width: 45px;
+        height: 45px;
+    }
+
+    .socialIcon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .bottomLinks {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    .particle,
+    .gradientOverlay,
+    .logoGlow,
+    .divider::before {
+        animation: none;
+    }
+
+    .socialLink:hover {
+        transform: none;
+    }
+}
+
+/* Focus states */
+.socialLink:focus,
+.navLink:focus,
+.bottomLink:focus {
+    outline: 2px solid #6366F1;
+    outline-offset: 2px;
+}

@@ -1,0 +1,672 @@
+/* styles/ShowcasePage.css */
+.showcase-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a2e 0%, #16213e 50%, #1a1a3e 100%);
+    color: white;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a2e 0%, #16213e 50%, #1a1a3e 100%);
+    color: white;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #A78BFA;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.showcase-header {
+    padding: 60px 0 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.showcase-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    margin-bottom: 40px;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-5px);
+}
+
+.header-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.header-content h1 {
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    font-size: 3.5rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #A78BFA, #C4B5FD);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(167, 139, 250, 0.3);
+}
+
+.header-content p {
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    font-size: 1.2rem;
+    color: #b8c4d4;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 40px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #A78BFA;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #b8c4d4;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.categories-section {
+    padding: 40px 0;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.categories-filter {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.category-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+}
+
+.category-btn:hover {
+    background: rgba(167, 139, 250, 0.2);
+    border-color: #A78BFA;
+    transform: translateY(-2px);
+}
+
+.category-btn.active {
+    background: linear-gradient(45deg, #A78BFA, #C4B5FD);
+    border-color: #A78BFA;
+    color: white;
+}
+
+.category-count {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.showcase-grid-section {
+    padding: 80px 0;
+}
+
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.showcase-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+}
+
+.showcase-card:hover {
+    transform: translateY(-15px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #A78BFA;
+    box-shadow: 0 25px 50px rgba(167, 139, 250, 0.2);
+}
+
+.showcase-image {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+}
+
+.showcase-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.showcase-card:hover .showcase-image img {
+    transform: scale(1.05);
+}
+
+.showcase-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.showcase-card:hover .showcase-overlay {
+    opacity: 1;
+}
+
+.view-button {
+    background: rgba(167, 139, 250, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.view-button:hover {
+    background: #A78BFA;
+    transform: scale(1.1);
+}
+
+.project-info {
+    display: flex;
+    gap: 20px;
+    color: white;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.project-year,
+.project-duration {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
+.project-category {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(45deg, #A78BFA, #C4B5FD);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.showcase-content {
+    padding: 25px;
+}
+
+.project-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: white;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    line-height: 1.3;
+}
+
+.project-description {
+    color: #b8c4d4;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    font-size: 0.95rem;
+}
+
+.project-client {
+    color: #A78BFA;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.tag {
+    background: rgba(167, 139, 250, 0.1);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    color: #A78BFA;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.tag:hover {
+    background: rgba(167, 139, 250, 0.2);
+    transform: translateY(-1px);
+}
+
+.project-awards {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #FFD700;
+    font-size: 0.85rem;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.project-awards svg {
+    color: #FFD700;
+}
+
+/* Project Modal */
+.project-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+}
+
+.modal-content {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    backdrop-filter: blur(20px);
+    z-index: 1001;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1002;
+}
+
+.close-modal:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.modal-video {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: #000;
+}
+
+.modal-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-details {
+    padding: 30px;
+}
+
+.modal-header {
+    margin-bottom: 25px;
+}
+
+.modal-header h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: white;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.modal-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.modal-year,
+.modal-duration,
+.modal-category {
+    background: rgba(167, 139, 250, 0.1);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    color: #A78BFA;
+    padding: 8px 16px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.modal-description {
+    margin-bottom: 25px;
+}
+
+.modal-description p {
+    color: #b8c4d4;
+    line-height: 1.7;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    font-size: 1.05rem;
+}
+
+.modal-client {
+    margin-bottom: 25px;
+}
+
+.modal-client h4 {
+    color: #A78BFA;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.modal-client p {
+    color: #b8c4d4;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.modal-tags {
+    margin-bottom: 25px;
+}
+
+.modal-tags h4 {
+    color: #A78BFA;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.modal-tools {
+    margin-bottom: 25px;
+}
+
+.modal-tools h4 {
+    color: #A78BFA;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tool {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.modal-awards h4 {
+    color: #FFD700;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.awards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.award {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #FFD700;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.award svg {
+    color: #FFD700;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .stats {
+        gap: 30px;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    .categories-filter {
+        gap: 10px;
+        padding: 0 20px;
+    }
+
+    .category-btn {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+    }
+
+    .modal-content {
+        margin: 10px;
+        max-height: 95vh;
+    }
+
+    .modal-video {
+        height: 250px;
+    }
+
+    .modal-details {
+        padding: 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .modal-meta {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .showcase-header {
+        padding: 40px 0 60px;
+    }
+
+    .header-content h1 {
+        font-size: 2rem;
+    }
+
+    .stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .showcase-grid {
+        padding: 0 15px;
+    }
+
+    .showcase-content {
+        padding: 20px;
+    }
+
+    .project-title {
+        font-size: 1.2rem;
+    }
+
+    .modal-content {
+        margin: 5px;
+    }
+
+    .modal-video {
+        height: 200px;
+    }
+
+    .modal-details {
+        padding: 15px;
+    }
+
+    .modal-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .modal-meta {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .tags-list,
+    .tools-list {
+        gap: 6px;
+    }
+}

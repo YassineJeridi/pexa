@@ -1,0 +1,403 @@
+/* styles/EventsPage.css */
+.events-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a2e 0%, #16213e 50%, #1a1a3e 100%);
+    color: white;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a2e 0%, #16213e 50%, #1a1a3e 100%);
+    color: white;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #FF6B6B;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.events-header {
+    padding: 60px 0 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.events-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 40%, rgba(255, 107, 107, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    margin-bottom: 40px;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-5px);
+}
+
+.header-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.header-content h1 {
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    font-size: 3.5rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+}
+
+.header-content p {
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    font-size: 1.2rem;
+    color: #b8c4d4;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 40px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #FF6B6B;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #b8c4d4;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.categories-section {
+    padding: 40px 0;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.categories-filter {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+}
+
+.category-btn:hover {
+    background: rgba(255, 107, 107, 0.2);
+    border-color: #FF6B6B;
+    transform: translateY(-2px);
+}
+
+.category-btn.active {
+    background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+    border-color: #FF6B6B;
+    color: white;
+}
+
+.category-count {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.events-grid-section {
+    padding: 80px 0;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.event-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+}
+
+.event-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #FF6B6B;
+    box-shadow: 0 20px 40px rgba(255, 107, 107, 0.2);
+}
+
+.event-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.event-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.event-card:hover .event-image img {
+    transform: scale(1.05);
+}
+
+.event-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.event-card:hover .event-overlay {
+    opacity: 1;
+}
+
+.play-button {
+    background: rgba(255, 107, 107, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.play-button:hover {
+    background: #FF6B6B;
+    transform: scale(1.1);
+}
+
+.event-category {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.event-content {
+    padding: 25px;
+}
+
+.event-date {
+    color: #FF6B6B;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.event-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: white;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.event-description {
+    color: #b8c4d4;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.detail {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #b8c4d4;
+    font-size: 0.9rem;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+}
+
+.detail svg {
+    color: #FF6B6B;
+    flex-shrink: 0;
+}
+
+.event-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    background: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    color: #FF6B6B;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-family: 'Microsoft PhagsPa', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.tag:hover {
+    background: rgba(255, 107, 107, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .stats {
+        gap: 30px;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .events-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    .categories-filter {
+        gap: 10px;
+        padding: 0 20px;
+    }
+
+    .category-btn {
+        padding: 10px 15px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .events-header {
+        padding: 40px 0 60px;
+    }
+
+    .header-content h1 {
+        font-size: 2rem;
+    }
+
+    .stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .events-grid {
+        padding: 0 15px;
+    }
+
+    .event-content {
+        padding: 20px;
+    }
+
+    .event-details {
+        gap: 6px;
+    }
+}
