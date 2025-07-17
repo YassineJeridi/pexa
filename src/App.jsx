@@ -19,7 +19,7 @@ import styles from './styles/App.module.css';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/pexa">
       <div className={styles.app}>
         <Routes>
           <Route path="/" element={
