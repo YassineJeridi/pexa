@@ -525,7 +525,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 360px;
 }
 
 /* Mobile Navigation Arrows */
@@ -587,7 +587,7 @@
 .mobileVideoInner {
     position: relative;
     width: 100%;
-    height: 100%;
+ 
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(30px);
     border: 1px solid rgba(255, 255, 255, 0.1);
