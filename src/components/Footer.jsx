@@ -14,12 +14,12 @@ const Footer = () => {
     const [hoveredIcon, setHoveredIcon] = useState(null);
 
     const socialLinks = [
-        { id: 'facebook', icon: facebookIcon, href: '#', label: 'Facebook' },
-        { id: 'linkedin', icon: linkedinIcon, href: '#', label: 'LinkedIn' },
-        { id: 'email', icon: emailIcon, href: 'mailto:contact@pexa.com', label: 'Email' },
-        { id: 'whatsapp', icon: whatsappIcon, href: '#', label: 'WhatsApp' },
-        { id: 'telegram', icon: telegramIcon, href: '#', label: 'Telegram' },
-        { id: 'instagram', icon: instagramIcon, href: '#', label: 'Instagram' }
+        { id: 'facebook', icon: facebookIcon, href: 'https://www.facebook.com/pe.xa.2025/', label: 'Facebook' },
+        { id: 'linkedin', icon: linkedinIcon, href: 'https://www.linkedin.com/in/yassine-jeridi-8a3457311/', label: 'LinkedIn' },
+        { id: 'email', icon: emailIcon, href: 'mailto:yassine.jeridi@redixsolutions.pro', label: 'Email' },
+        { id: 'whatsapp', icon: whatsappIcon, href: 'https://wa.me/qr/BSLWLZCG7NAEH1', label: 'WhatsApp' },
+        { id: 'telegram', icon: telegramIcon, href: 'https://t.me/yassinejeridi', label: 'Telegram' },
+        { id: 'instagram', icon: instagramIcon, href: 'https://www.instagram.com/_pe_xa_/', label: 'Instagram' }
     ];
 
     const navigationLinks = [
