@@ -522,7 +522,7 @@
     justify-content: center;
     align-items: center;
     gap: 80px;
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(2, 179, 66, 0.067);
     backdrop-filter: blur(40px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 40px;
@@ -566,7 +566,7 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 2.8rem;
     font-weight: 900;
-    background: linear-gradient(135deg, #6366F1, #8B5CF6);
+    background: linear-gradient(135deg, #00d000, #0398e8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

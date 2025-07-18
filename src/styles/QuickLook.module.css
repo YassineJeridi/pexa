@@ -1,4 +1,4 @@
-/* components/QuickLook.module.css */
+/* styles/QuickLook.module.css */
 .quickLook {
     min-height: 100vh;
     background: #0A0A0A;
@@ -126,134 +126,166 @@
     line-height: 1.6;
 }
 
-/* Desktop Layout */
+/* Enhanced Desktop Layout with 3D Effect */
 .desktopLayout {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 40px;
     margin-bottom: 120px;
+    perspective: 1200px;
+    position: relative;
 }
 
-/* Video Cards */
+.videosContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+/* Navigation Arrows for Desktop */
+.navArrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 10;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.navArrow:hover {
+    background: rgba(0, 212, 255, 0.25);
+    border-color: rgba(0, 212, 255, 0.5);
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+}
+
+.navArrow:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: translateY(-50%) scale(0.9);
+}
+
+.leftArrow {
+    left: -100px;
+}
+
+.rightArrow {
+    right: -100px;
+}
+
+/* Enhanced 3D Video Cards */
 .sideVideo {
     position: relative;
-    width: 280px;
-    height: 400px;
+    width: 300px;
+    height: 450px;
     cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    opacity: 0;
-    transform: translateY(40px) scale(0.9);
-    animation: cardReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0.75;
+    z-index: 2;
 }
 
-.quickLook.visible .sideVideo {
-    animation-play-state: running;
+.leftVideo {
+    transform: rotateY(35deg) scale(0.8) translateX(30px);
 }
 
-.sideVideo.leftVideo {
-    animation-delay: 0.1s;
-}
-
-.sideVideo.rightVideo {
-    animation-delay: 0.3s;
-}
-
-@keyframes cardReveal {
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+.rightVideo {
+    transform: rotateY(-35deg) scale(0.8) translateX(-30px);
 }
 
 .sideVideo:hover {
-    transform: translateY(-15px) rotateX(5deg) rotateY(2deg);
-    z-index: 10;
-}
-
-.videoCard {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 28px;
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.sideVideo:hover .videoCard {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.15);
-    box-shadow:
-        0 25px 50px rgba(0, 0, 0, 0.3),
-        0 0 40px rgba(0, 212, 255, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
-}
-
-.sideVideoElement {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    filter: grayscale(70%) brightness(0.8) contrast(1.2);
-}
-
-.sideVideo:hover .sideVideoElement {
-    filter: grayscale(0%) brightness(1.1) contrast(1.1);
-    transform: scale(1.05);
-}
-
-/* Main Video */
-.mainVideoContainer {
-    position: relative;
-    width: 450px;
-    height: 600px;
-    cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    opacity: 0;
-    transform: translateY(40px) scale(0.9);
-    animation: cardReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-    animation-delay: 0.2s;
+    opacity: 1;
     z-index: 5;
 }
 
-.mainVideoContainer:hover {
-    transform: translateY(-20px) rotateX(8deg) rotateY(3deg);
-    z-index: 15;
+.leftVideo:hover {
+    transform: rotateY(15deg) scale(0.9) translateY(-15px) translateX(15px);
 }
 
+.rightVideo:hover {
+    transform: rotateY(-15deg) scale(0.9) translateY(-15px) translateX(-15px);
+}
+
+.sideVideo.transitioning {
+    transform: rotateY(0deg) scale(0.7) translateY(20px);
+    opacity: 0.5;
+}
+
+/* Main Video with Enhanced 3D */
+.mainVideoContainer {
+    position: relative;
+    width: 420px;
+    height: 650px;
+    cursor: pointer;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 3;
+    transform: scale(1) rotateY(0deg);
+}
+
+.mainVideoContainer:hover {
+    transform: scale(1.08) translateY(-20px) rotateY(2deg);
+    z-index: 6;
+}
+
+.mainVideoContainer.transitioning {
+    transform: scale(0.9) rotateY(15deg) translateY(30px);
+    opacity: 0.6;
+}
+
+/* Video Card Styling */
+.videoCard,
 .mainVideoCard {
     position: relative;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 32px;
     overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.mainVideoContainer:hover .mainVideoCard {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.15);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     box-shadow:
-        0 30px 60px rgba(0, 0, 0, 0.3),
-        0 0 50px rgba(0, 212, 255, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(0, 212, 255, 0.1);
 }
 
+.sideVideo:hover .videoCard,
+.mainVideoContainer:hover .mainVideoCard {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 212, 255, 0.4);
+    box-shadow:
+        0 35px 70px rgba(0, 0, 0, 0.5),
+        0 0 50px rgba(0, 212, 255, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.sideVideoElement,
 .mainVideo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    filter: brightness(0.85) contrast(1.15);
 }
 
+.sideVideo:hover .sideVideoElement,
 .mainVideoContainer:hover .mainVideo {
-    transform: scale(1.02);
+    filter: brightness(1.1) contrast(1.05);
+    transform: scale(1.03);
 }
 
 /* Video Overlay */
@@ -262,12 +294,12 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
-    backdrop-filter: blur(25px);
-    border-radius: 0 0 28px 28px;
-    padding: 20px;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.8));
+    backdrop-filter: blur(30px);
+    border-radius: 0 0 32px 32px;
+    padding: 25px;
     transform: translateY(100%);
-    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     z-index: 3;
 }
 
@@ -282,84 +314,34 @@
 
 .videoTitle {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: white;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     letter-spacing: -0.01em;
 }
 
 .videoCategory {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.7);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-/* Main Video Info */
-.mainVideoInfo {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
-    backdrop-filter: blur(25px);
-    border-radius: 20px;
-    padding: 20px;
-    transform: translateY(100%);
-    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    z-index: 3;
-}
-
-.mainVideoContainer:hover .mainVideoInfo {
-    transform: translateY(0);
-}
-
-.infoContent {
-    display: flex;
-    flex-direction: column;
-}
-
-.mainVideoTitle {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
-}
-
-.mainVideoDescription {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 8px;
-    line-height: 1.4;
-}
-
-.mainVideoCategory {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     font-weight: 500;
     color: #00d4ff;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
-/* Video Controller */
+/* Enhanced Video Controller */
 .videoController {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-    padding: 20px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
+    padding: 25px;
     transform: translateY(100%);
-    transition: transform 0.3s ease;
-    border-radius: 0 0 28px 28px;
-    backdrop-filter: blur(25px);
+    transition: transform 0.4s ease;
+    border-radius: 0 0 32px 32px;
+    backdrop-filter: blur(30px);
     z-index: 4;
 }
 
@@ -368,120 +350,436 @@
 }
 
 .progressContainer {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .progressBar {
-    height: 4px;
+    height: 6px;
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
+    border-radius: 3px;
     cursor: pointer;
-    transition: height 0.2s ease;
+    transition: height 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.progressBar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+    animation: progressShimmer 2s ease-in-out infinite;
+}
+
+@keyframes progressShimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 .progressBar:hover {
-    height: 6px;
+    height: 8px;
 }
 
 .progressFill {
     height: 100%;
     background: linear-gradient(90deg, #00d4ff, #4a9eff);
-    border-radius: 2px;
+    border-radius: 3px;
     transition: width 0.1s ease;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
 }
 
 .controlsRow {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 15px;
 }
 
 .leftControls {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
 }
 
 .rightControls {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .controlBtn {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     border: none;
     color: white;
     cursor: pointer;
-    padding: 8px;
-    border-radius: 12px;
-    transition: all 0.2s ease;
+    padding: 10px;
+    border-radius: 16px;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .controlBtn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
+    background: rgba(0, 212, 255, 0.3);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.3);
 }
 
 .volumeSlider {
-    width: 80px;
-    margin: 0 5px;
+    width: 90px;
+    margin: 0 8px;
 }
 
 .volumeInput {
     width: 100%;
-    height: 4px;
+    height: 6px;
     background: rgba(255, 255, 255, 0.2);
     outline: none;
-    border-radius: 2px;
+    border-radius: 3px;
     cursor: pointer;
     appearance: none;
 }
 
 .volumeInput::-webkit-slider-thumb {
     appearance: none;
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     background: #00d4ff;
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 3px 8px rgba(0, 212, 255, 0.4);
+    transition: transform 0.2s ease;
+}
+
+.volumeInput::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
 }
 
 .volumeInput::-moz-range-thumb {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     background: #00d4ff;
     border-radius: 50%;
     cursor: pointer;
     border: none;
-    box-shadow: 0 2px 6px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 3px 8px rgba(0, 212, 255, 0.4);
 }
 
 .timeDisplay {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
+    font-weight: 500;
+}
+
+.videoInfoInController {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+}
+
+.currentVideoTitle {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+}
+
+.currentVideoCategory {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.8rem;
+    color: #00d4ff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+/* Enhanced Mobile Layout */
+.mobileLayout {
+    display: none;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto 100px;
+    position: relative;
+}
+
+.mobileContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Mobile Navigation Arrows */
+.mobileNavArrow {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 10;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.mobileNavArrow:hover {
+    background: rgba(0, 212, 255, 0.25);
+    border-color: rgba(0, 212, 255, 0.5);
+    transform: translateX(-50%) scale(1.15);
+    box-shadow: 0 12px 30px rgba(0, 212, 255, 0.4);
+}
+
+.mobileNavArrow:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: translateX(-50%) scale(0.9);
+}
+
+.topArrow {
+    top: -35px;
+}
+
+.bottomArrow {
+    bottom: -35px;
+}
+
+/* Mobile Video Card */
+.mobileVideoCard {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.mobileVideoCard.transitioning {
+    transform: scale(0.9) rotateX(20deg);
+    opacity: 0.6;
+}
+
+.mobileVideoInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 28px;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(0, 212, 255, 0.1);
+}
+
+.mobileVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Mobile Video Controller */
+.mobileVideoController {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
+    padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+    border-radius: 0 0 28px 28px;
+    backdrop-filter: blur(30px);
+    z-index: 4;
+}
+
+.mobileVideoController.show {
+    transform: translateY(0);
+}
+
+.mobileProgressContainer {
+    margin-bottom: 15px;
+}
+
+.mobileProgressBar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: height 0.3s ease;
+}
+
+.mobileProgressBar:active {
+    height: 8px;
+}
+
+.mobileProgressFill {
+    height: 100%;
+    background: linear-gradient(90deg, #00d4ff, #4a9eff);
+    border-radius: 3px;
+    transition: width 0.1s ease;
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+}
+
+.mobileControls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.mobileLeftControls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mobileRightControls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mobileControlBtn {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(15px);
+}
+
+.mobileControlBtn:hover {
+    background: rgba(0, 212, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.mobileTimeDisplay {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+.mobileVideoInfo {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+    text-align: center;
+}
+
+.mobileVideoTitle {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+}
+
+.mobileVideoCategory {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #00d4ff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Progress Dots */
+.progressDots {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.progressDot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.progressDot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(0, 212, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease;
+}
+
+.progressDot.active {
+    background: #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+    transform: scale(1.3);
+}
+
+.progressDot.active::after {
+    width: 24px;
+    height: 24px;
+}
+
+.progressDot:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(1.15);
 }
 
 /* Interactive Effects */
 .videoEffects,
-.mainVideoEffects {
+.mainVideoEffects,
+.mobileVideoEffects {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     pointer-events: none;
-    border-radius: 28px;
+    border-radius: 32px;
     overflow: hidden;
+}
+
+.mobileVideoEffects {
+    border-radius: 28px;
 }
 
 .shimmer {
@@ -492,147 +790,36 @@
     height: 200%;
     background: linear-gradient(45deg,
             transparent,
-            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.15),
             transparent);
     transform: translateX(-100%) translateY(-100%);
-    transition: transform 0.6s ease;
+    transition: transform 0.8s ease;
 }
 
 .sideVideo:hover .shimmer,
-.mainVideoContainer:hover .shimmer {
+.mainVideoContainer:hover .shimmer,
+.mobileVideoCard:hover .shimmer {
     transform: translateX(100%) translateY(100%);
 }
 
 .glow {
     position: absolute;
-    top: -25px;
-    left: -25px;
-    right: -25px;
-    bottom: -25px;
+    top: -30px;
+    left: -30px;
+    right: -30px;
+    bottom: -30px;
     background: radial-gradient(ellipse at center,
-            rgba(0, 212, 255, 0.2) 0%,
+            rgba(0, 212, 255, 0.25) 0%,
             transparent 70%);
     opacity: 0;
-    filter: blur(25px);
-    transition: opacity 0.5s ease;
+    filter: blur(30px);
+    transition: opacity 0.6s ease;
 }
 
 .sideVideo:hover .glow,
-.mainVideoContainer:hover .glow {
+.mainVideoContainer:hover .glow,
+.mobileVideoCard:hover .glow {
     opacity: 1;
-}
-
-/* Mobile Layout */
-.mobileLayout {
-    display: none;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto 80px;
-}
-
-.mobileContainer {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-}
-
-.mobileVideoCard {
-    position: relative;
-    height: 300px;
-    cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    opacity: 0;
-    transform: translateY(40px) scale(0.9);
-    animation: cardReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-    animation-delay: var(--delay);
-}
-
-.mobileVideoCard.active {
-    transform: translateY(-10px) scale(1.02);
-    z-index: 10;
-}
-
-.mobileVideoInner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.mobileVideoCard:hover .mobileVideoInner {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.15);
-    box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.3),
-        0 0 30px rgba(0, 212, 255, 0.1);
-}
-
-.mobileVideo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.mobileVideoCard:hover .mobileVideo {
-    transform: scale(1.05);
-}
-
-.mobileVideoOverlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
-    backdrop-filter: blur(25px);
-    border-radius: 0 0 20px 20px;
-    padding: 15px;
-    transform: translateY(100%);
-    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    z-index: 3;
-}
-
-.mobileVideoCard:hover .mobileVideoOverlay {
-    transform: translateY(0);
-}
-
-.mobileVideoInfo {
-    display: flex;
-    flex-direction: column;
-}
-
-.mobileVideoTitle {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: white;
-    margin-bottom: 4px;
-    letter-spacing: -0.01em;
-}
-
-.mobileVideoCategory {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: #00d4ff;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.mobileVideoEffects {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    border-radius: 20px;
-    overflow: hidden;
 }
 
 /* Stats Section */
@@ -715,14 +902,26 @@
         gap: 30px;
     }
 
+    .videosContainer {
+        gap: 45px;
+    }
+
+    .leftArrow {
+        left: -80px;
+    }
+
+    .rightArrow {
+        right: -80px;
+    }
+
     .sideVideo {
-        width: 250px;
-        height: 360px;
+        width: 270px;
+        height: 400px;
     }
 
     .mainVideoContainer {
-        width: 400px;
-        height: 550px;
+        width: 380px;
+        height: 580px;
     }
 
     .stats {
@@ -785,6 +984,10 @@
     .mobileLayout {
         max-width: 100%;
     }
+
+    .mobileVideoCard {
+        height: 350px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -797,7 +1000,7 @@
     }
 
     .mobileVideoCard {
-        height: 250px;
+        height: 320px;
     }
 
     .stats {
@@ -810,9 +1013,11 @@
 }
 
 /* Enhanced focus states for accessibility */
-.sideVideo:focus-within,
-.mainVideoContainer:focus-within,
-.mobileVideoCard:focus-within {
+.navArrow:focus,
+.mobileNavArrow:focus,
+.progressDot:focus,
+.controlBtn:focus,
+.mobileControlBtn:focus {
     outline: 2px solid #00d4ff;
     outline-offset: 2px;
 }
@@ -822,10 +1027,10 @@
 
     .sideVideo,
     .mainVideoContainer,
-    .mobileVideoCard {
-        animation: none;
-        opacity: 1;
-        transform: none;
+    .mobileVideoCard,
+    .navArrow,
+    .mobileNavArrow {
+        transition: none;
     }
 
     .backgroundGradient {
@@ -833,6 +1038,15 @@
     }
 
     .titleGlow {
+        animation: none;
+    }
+
+    .shimmer,
+    .glow {
+        display: none;
+    }
+
+    .progressShimmer {
         animation: none;
     }
 }

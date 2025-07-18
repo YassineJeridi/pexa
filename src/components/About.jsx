@@ -22,7 +22,7 @@ const About = () => {
 
     const skillItems = [
         { icon: adobeIcon, label: 'Adobe Creative Cloud', value: 'The entire adobe Softwares' },
-        { icon: sfxIcon, label: 'Sound Design', value: 'Sound design thinking (Music & SFX)' },
+        { icon: sfxIcon, label: 'Sound Design', value: 'Sound design thinking (SFX)' },
         { icon: vfxIcon, label: 'VFX', value: 'Know basic VFX' }
     ];
 
