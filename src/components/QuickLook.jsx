@@ -6,10 +6,10 @@ import jciThumbnail from '../assets/thumbnails/JCI EVENT.png';
 import kapariThumbnail from '../assets/thumbnails/Kapari square.png';
 import pmentoThumbnail from '../assets/thumbnails/Pmentos presntation.png';
 import ettrotVideo from '../assets/videos/Ettrot Promotional video.mov';
-import fritaVideo from '../assets/videos/Frita Fast Food.mov';
-import jciVideo from '../assets/videos/JCI EVENT.mov';
-import kapariVideo from '../assets/videos/Kapari square.mov';
-import pmentoVideo from '../assets/videos/Pmentos presntation.mov';
+import fritaVideo from '../assets/videos/Frita Fast Food.mp4';
+import jciVideo from '../assets/videos/JCI EVENT.mp4';
+import kapariVideo from '../assets/videos/Kapari square.mp4';
+import pmentoVideo from '../assets/videos/Pmentos presntation.mp4';
 import styles from '../styles/QuickLook.module.css';
 
 const QuickLook = () => {
