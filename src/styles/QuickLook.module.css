@@ -519,12 +519,13 @@
     position: relative;
 }
 
+/* FIXED: Changed gap from 400px to 40px */
 .mobileContainer {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 400px;
+    gap: 40px;
 }
 
 /* Mobile Navigation Arrows */
@@ -573,7 +574,7 @@
 .mobileVideoCard {
     position: relative;
     width: 100%;
-
+    height: 400px;
     cursor: pointer;
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -586,7 +587,7 @@
 .mobileVideoInner {
     position: relative;
     width: 100%;
-  
+    height: 100%;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(30px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -603,6 +604,15 @@
     height: 100%;
     object-fit: cover;
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ADDED: Mobile video display control */
+.activeVideo {
+    display: block !important;
+}
+
+.hiddenVideo {
+    display: none !important;
 }
 
 /* Mobile Video Controller */

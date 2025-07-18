@@ -16,7 +16,7 @@ const QuickLook = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
-    const [isMuted, setIsMuted] = useState(true);
+    const [isMuted, setIsMuted] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [volume, setVolume] = useState(0.7);
@@ -97,12 +97,13 @@ const QuickLook = () => {
             ([entry]) => {
                 if (entry.isIntersecting) {
                     setIsVisible(true);
+                    setIsPlaying(true); // This line makes video auto-play
                 } else {
                     setIsVisible(false);
                     setIsPlaying(false);
                 }
             },
-            { threshold: 0.3 }
+            { threshold: 0.1 }
         );
 
         if (sectionRef.current) {
@@ -622,19 +623,26 @@ const QuickLook = () => {
                                 className={`${styles.mobileVideoCard} ${styles.active} ${isTransitioning ? styles.transitioning : ''}`}
                             >
                                 <div className={styles.mobileVideoInner}>
-                                    <video
-                                        ref={el => mobileVideoRefs.current[currentIndex] = el}
-                                        className={styles.mobileVideo}
-                                        loop
-                                        muted={isMuted}
-                                        playsInline
-                                        poster={videos[currentIndex].thumbnail}
-                                        preload="metadata"
-                                        onClick={() => setShowController(!showController)}
-                                    >
-                                        <source src={videos[currentIndex].video} type="video/mp4" />
-                                        <source src={videos[currentIndex].video} type="video/quicktime" />
-                                    </video>
+                                    {/* Render all videos but only show the current one */}
+                                    {videos.map((video, index) => (
+                                        <video
+                                            key={video.id}
+                                            ref={el => mobileVideoRefs.current[index] = el}
+                                            className={`${styles.mobileVideo} ${index === currentIndex ? styles.activeVideo : styles.hiddenVideo}`}
+                                            loop
+                                            muted={isMuted}
+                                            playsInline
+                                            poster={video.thumbnail}
+                                            preload="metadata"
+                                            onClick={() => setShowController(!showController)}
+                                            style={{
+                                                display: index === currentIndex ? 'block' : 'none'
+                                            }}
+                                        >
+                                            <source src={video.video} type="video/mp4" />
+                                            <source src={video.video} type="video/quicktime" />
+                                        </video>
+                                    ))}
 
                                     {/* Mobile Video Controller */}
                                     <div className={`${styles.mobileVideoController} ${showController ? styles.show : ''}`}>
